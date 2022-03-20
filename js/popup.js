@@ -23,7 +23,7 @@ $('#btCode').click(() => {
 		if(response) {
             var result = JSON.parse(response);
             $('#taCode').val(result.value);
-           // showWindowsTip(result);
+            // showWindowsTip(result);
         }
 	});
 });
@@ -33,7 +33,7 @@ $('#btReminder').click(() => {
 		if(response) {
             var result = JSON.parse(response);
             $('#taCode').val(result.value);
-           // showWindowsTip(result);
+            // showWindowsTip(result);
         }
 	});
 });
@@ -49,11 +49,21 @@ function showWindowsTip(response){
 
 
 $('#theme').click(() => {
-	var theme = $('body').attr('data-theme');
-	if (theme == 'light') {
-		$('body').attr('data-theme','dark');
+	var themeVal = $('body').attr('data-theme');
+	if (themeVal == 'light') {
+		themeVal = 'dark';
 	} else {
-		$('body').attr('data-theme','light');
+		themeVal = 'light';
 	}
+
+	$('body').attr('data-theme',themeVal);
+	chrome.storage.sync.set({theme: themeVal}, function() {
+		console.log('Save default theme '+ themeVal +'successfylly');
+	});
 	
+});
+
+chrome.storage.sync.get({theme: 'dark'}, function(items) {
+	$('body').attr('data-theme',items.theme);
+	console.log('Load default theme '+ items.theme +'successfylly');
 });
