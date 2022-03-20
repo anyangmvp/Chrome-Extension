@@ -46,3 +46,14 @@ function showWindowsTip(response){
         message: response.value
     });
 }
+
+
+$('#theme').click(() => {
+	var theme = $('body').attr('data-theme');
+	if (theme == 'light') {
+		$('body').attr('data-theme','dark');
+	} else {
+		$('body').attr('data-theme','light');
+	}
+	
+});
