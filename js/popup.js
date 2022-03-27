@@ -18,7 +18,7 @@ function sendMessageToContentScript(message, callback)
 	});
 }
 
-$('#btCode').click(() => {
+$('#btCode').on('click',() => {
 	sendMessageToContentScript({cmd:'generate', value:'Hello Stephen！'}, (response) => {
 		if(response) {
             var result = JSON.parse(response);
@@ -28,7 +28,7 @@ $('#btCode').click(() => {
 	});
 });
 
-$('#btReminder').click(() => {
+$('#btReminder').on('click',() => {
 	sendMessageToContentScript({cmd:'reminder', value:'Hello Stephen！'}, (response) => {
 		if(response) {
             var result = JSON.parse(response);
@@ -48,7 +48,7 @@ function showWindowsTip(response){
 }
 
 
-$('#theme').click(() => {
+$('#theme').on('click',() => {
 	var themeVal = $('body').attr('data-theme');
 	if (themeVal == 'light') {
 		themeVal = 'dark';
